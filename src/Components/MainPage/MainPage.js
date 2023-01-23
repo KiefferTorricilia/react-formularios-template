@@ -1,27 +1,22 @@
 import React, { useState } from 'react'
 import { MainContainer, Form, Input } from './styles'
+import useForm from '../../hooks/useForm'
 
 function MainPage() {
-  const [nome, setNome] = useState("")
-  const [idade, setIdade] = useState("")
-  const [email, setEmail] = useState("")
+  // const [formulario, setFormulario] = useState({nome: "", idade: "", email: ""})
 
-  const onChangeNome = (event) => {
-    setNome(event.target.value)
-  }
+  const [formulario, onChangeInput, clear] = useForm({nome: "", idade:"", email: "", profissao: ""})
 
-  const onChangeIdade = (event) => {
-    setIdade(event.target.value)
-  }
-
-  const onChangeEmail = (event) => {
-    setEmail(event.target.value)
-  }
+  // const onChangeInput = (e) => {
+  //   const {name, value} = e.target
+  //   setFormulario({...formulario, [name]: value})
+  // }
 
   const handleClick = (event) => {
     event.preventDefault()
+    clear()
 
-    console.log(`nome: ${nome}, idade: ${idade}, e-mail: ${email} `)
+    console.log(`nome: ${formulario.nome}, idade: ${formulario.idade}, e-mail: ${formulario.email}, Profissão: ${formulario.profissao} `)
   }
 
   return (
@@ -31,23 +26,37 @@ function MainPage() {
       <Form onSubmit={handleClick}>
         <label htmlFor="nome">Nome:</label>
         <Input 
+        //O nome tem que ser o mesmo do Estado formulario
+          name="nome"
           id="nome"
-          value={nome}
-          onChange={onChangeNome}
+          value={formulario.nome}
+          onChange={onChangeInput}
+          type="name"
         />
 
         <label htmlFor="idade">Idade:</label>
-        <Input 
+        <Input
+          name="idade"
           id="idade"
-          value={idade}
-          onChange={onChangeIdade}
+          value={formulario.idade}
+          onChange={onChangeInput}
         />
 
         <label htmlFor="email">E-mail:</label>
-        <Input 
+        <Input
+          name="email"
           id="email"
-          value={email}
-          onChange={onChangeEmail}
+          value={formulario.email}
+          onChange={onChangeInput}
+          type="email"
+        />
+        <label htmlFor="profissao">Profissão:</label>
+        <Input
+          name="profissao"
+          id="profissao"
+          value={formulario.profissao}
+          onChange={onChangeInput}
+          required
         />
         
         
