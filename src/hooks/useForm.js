@@ -5,7 +5,9 @@ export default function useForm(initialState){
 
     const onChangeInput = (e) => {
         const {name, value} = e.target
+        console.log(e.target)
         setFormulario({...formulario, [name]: value})
+        console.log(formulario)
       }
 
       const clear = () => {

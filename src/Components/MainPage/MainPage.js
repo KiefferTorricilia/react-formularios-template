@@ -3,20 +3,16 @@ import { MainContainer, Form, Input } from './styles'
 import useForm from '../../hooks/useForm'
 
 function MainPage() {
-  // const [formulario, setFormulario] = useState({nome: "", idade: "", email: ""})
-
   const [formulario, onChangeInput, clear] = useForm({nome: "", idade:"", email: "", profissao: ""})
 
-  // const onChangeInput = (e) => {
-  //   const {name, value} = e.target
-  //   setFormulario({...formulario, [name]: value})
-  // }
+  
 
   const handleClick = (event) => {
     event.preventDefault()
     clear()
 
     console.log(`nome: ${formulario.nome}, idade: ${formulario.idade}, e-mail: ${formulario.email}, Profissão: ${formulario.profissao} `)
+    
   }
 
   return (
